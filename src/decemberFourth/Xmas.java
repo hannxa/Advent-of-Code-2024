@@ -1,11 +1,6 @@
 package decemberFourth;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import readFile.ReadFile;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,9 +8,9 @@ import java.util.regex.Pattern;
 public class Xmas {
     static List<String> xmasPuzzle = new ArrayList<>();
 
-
     public static void main(String[] args) {
-        readFile("xmasPuzzle.txt");
+        ReadFile readFile = new ReadFile();
+        xmasPuzzle =  readFile.readFile("xmasPuzzle.txt", xmasPuzzle);
         String targetPattern1 = "XMAS";
         String targetPattern2 = "SAMX";
 
@@ -73,18 +68,6 @@ public class Xmas {
             }
         }
         System.out.println(foundXmas);
-    }
-    public static void readFile(String fileName){
-        try(BufferedReader br = new BufferedReader(new FileReader(fileName))){
-            String line;
-            while((line = br.readLine()) != null){
-                xmasPuzzle.add(line);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-        } catch(IOException e){
-            System.out.println("I/O exception");
-        }
     }
 }
 
